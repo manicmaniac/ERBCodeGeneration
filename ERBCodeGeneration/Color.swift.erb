@@ -1,0 +1,16 @@
+//
+//  Color.swift
+//  ERBCodeGeneration
+//
+//  Created by Ryosuke Ito on 4/7/21.
+//
+
+import UIKit
+
+<% require "json" -%>
+<% colors = JSON.parse(File.read(File.expand_path("./ERBCodeGeneration/colors.json", ENV["SRCROOT"]))) -%>
+enum Color {
+    <% colors.each do |color| -%>
+    static let <%= color["name"] %> = UIColor(red: <%= color["r"] %>, green: <%= color["g"] %>, blue: <%= color["b"] %>, alpha: <%= color["a"] %>)
+    <% end -%>
+}
